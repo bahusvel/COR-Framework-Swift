@@ -25,9 +25,9 @@ public class CORModule {
     private var moduleID: String
     private var produces: [String] = []
     private var consumes: [String: (Message) -> Void] = [:]
-    public let networkAdapter: NetworkAdapter
+    public var networkAdapter: NetworkAdapter?
     
-    public init(moduleID: String, networkAdapter: NetworkAdapter){
+    public init(moduleID: String, networkAdapter: NetworkAdapter?){
         self.moduleID = moduleID
         self.networkAdapter = networkAdapter
         print("Initiliaizing module with \(moduleID)\n")
@@ -49,7 +49,7 @@ public class CORModule {
     }
     
     public func messageOut(message: Message){
-        networkAdapter.messageOut(message)
+        networkAdapter?.messageOut(message)
     }
     
 }
